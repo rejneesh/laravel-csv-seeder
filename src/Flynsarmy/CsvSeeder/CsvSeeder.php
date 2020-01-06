@@ -6,7 +6,7 @@ use DB;
 use Hash;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Schema;
-
+use Illuminate\Support\Arr;
 /**
  * Taken from http://laravelsnippets.com/snippets/seeding-database-with-csv-files-cleanly
  * and modified to include insert chunking
@@ -172,7 +172,7 @@ class CsvSeeder extends Seeder
                 // skip csv columns that don't exist in the database
                 foreach($mapping  as $index => $fieldname){
                     if (!DB::getSchemaBuilder()->hasColumn($this->table, $fieldname)){
-                       array_pull($mapping, $index);
+                       Arr::pull($mapping, $index);
                     }
                 }
             }
